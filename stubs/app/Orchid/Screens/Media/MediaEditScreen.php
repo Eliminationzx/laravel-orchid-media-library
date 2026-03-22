@@ -6,9 +6,9 @@ namespace App\Orchid\Screens\Media;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Manzadey\LaravelOrchidHelpers\Orchid\Helpers\Alerts\SaveAlert;
-use Manzadey\LaravelOrchidHelpers\Orchid\Helpers\Screens\EditScreen;
-use Manzadey\OrchidMediaLibrary\Models\Media;
+use OrchidHelpers\Orchid\Helpers\Alerts\SaveAlert;
+use OrchidHelpers\Orchid\Helpers\Screens\EditScreen;
+use OrchidMediaLibrary\Models\Media;
 use Orchid\Screen\Fields\Input;
 use Orchid\Support\Facades\Layout;
 

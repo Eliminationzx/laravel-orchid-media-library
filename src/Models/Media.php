@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Manzadey\OrchidMediaLibrary\Models;
+namespace OrchidMediaLibrary\Models;
 
 use Orchid\Filters\Filterable;
 use Orchid\Screen\AsSource;

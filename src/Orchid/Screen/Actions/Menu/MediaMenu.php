@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Manzadey\OrchidMediaLibrary\Orchid\Screen\Actions\Menu;
+namespace OrchidMediaLibrary\Orchid\Screen\Actions\Menu;
 
-use Manzadey\OrchidMediaLibrary\Services\MediaService;
+use OrchidMediaLibrary\Services\MediaService;
 use Orchid\Screen\Actions\Menu;
 
 class MediaMenu

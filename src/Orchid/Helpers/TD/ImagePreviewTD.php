@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Manzadey\OrchidMediaLibrary\Orchid\Helpers\TD;
+namespace OrchidMediaLibrary\Orchid\Helpers\TD;
 
-use Manzadey\OrchidMediaLibrary\View\Components\Platform\ImagePreviewComponent;
+use OrchidMediaLibrary\View\Components\Platform\ImagePreviewComponent;
 use Orchid\Screen\TD;
 
 class ImagePreviewTD

@@ -1,6 +1,6 @@
 {
-  "name": "manzadey/laravel-orchid-media-library",
-  "description": "Laravel Orchid Activity Log Wrapper",
+  "name": "eliminationzx/laravel-orchid-media-library",
+  "description": "Laravel Orchid Media Library Wrapper",
   "type": "package",
   "license": "MIT",
   "authors": [
@@ -12,17 +12,17 @@
     }
   ],
   "require": {
-    "php": "^8.1",
+    "php": "^8.3",
     "ext-json": "*",
-    "manzadey/laravel-orchid-helpers": "^0.6.0-beta",
-    "spatie/laravel-medialibrary": "^10.4"
+    "eliminationzx/laravel-orchid-helpers": "dev-main",
+    "spatie/laravel-medialibrary": "^11.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest"
   },
   "autoload": {
     "psr-4": {
-      "Manzadey\\OrchidMediaLibrary\\": "src/"
+      "OrchidMediaLibrary\\": "src/"
     }
   },
   "autoload-dev": {
@@ -33,7 +33,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Manzadey\\OrchidMediaLibrary\\Providers\\FoundationServiceProvider"
+        "OrchidMediaLibrary\\Providers\\FoundationServiceProvider"
       ]
     }
   }

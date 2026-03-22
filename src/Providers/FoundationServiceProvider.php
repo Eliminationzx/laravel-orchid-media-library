@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Manzadey\OrchidMediaLibrary\Providers;
+namespace OrchidMediaLibrary\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Manzadey\OrchidMediaLibrary\Console\Commands\InstallCommand;
+use OrchidMediaLibrary\Console\Commands\InstallCommand;
 
 class FoundationServiceProvider extends ServiceProvider
 {

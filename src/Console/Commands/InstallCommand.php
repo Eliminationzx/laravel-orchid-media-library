@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Manzadey\OrchidMediaLibrary\Console\Commands;
+namespace OrchidMediaLibrary\Console\Commands;
 
 use Illuminate\Console\Command;
-use Manzadey\OrchidMediaLibrary\Providers\FoundationServiceProvider;
+use OrchidMediaLibrary\Providers\FoundationServiceProvider;
 use Spatie\MediaLibrary\MediaLibraryServiceProvider;
 
 class InstallCommand extends Command

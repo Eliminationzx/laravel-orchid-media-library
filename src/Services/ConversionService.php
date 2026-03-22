@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Manzadey\OrchidMediaLibrary\Services;
+namespace OrchidMediaLibrary\Services;
 
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;

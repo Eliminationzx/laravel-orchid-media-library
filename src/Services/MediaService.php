@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Manzadey\OrchidMediaLibrary\Services;
+namespace OrchidMediaLibrary\Services;
 
 class MediaService
 {

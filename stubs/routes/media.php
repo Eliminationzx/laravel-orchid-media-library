@@ -6,8 +6,8 @@ use App\Orchid\Screens\Media\MediaEditScreen;
 use App\Orchid\Screens\Media\MediaListScreen;
 use App\Orchid\Screens\Media\MediaShowScreen;
 use Illuminate\Support\Facades\Route;
-use Manzadey\OrchidMediaLibrary\Models\Media;
-use Manzadey\OrchidMediaLibrary\Services\MediaService;
+use OrchidMediaLibrary\Models\Media;
+use OrchidMediaLibrary\Services\MediaService;
 use Tabuna\Breadcrumbs\Trail;
 
 Route::name('platform.')
