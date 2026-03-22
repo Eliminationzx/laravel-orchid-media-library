@@ -26,6 +26,8 @@ use OrchidHelpers\Orchid\Helpers\Sights\IdSight;
 use OrchidHelpers\Orchid\Helpers\Sights\Sight;
 use OrchidHelpers\Orchid\Helpers\TD\BoolTD;
 use OrchidHelpers\Orchid\Helpers\TD\LinkTD;
+use Orchid\MediaLibrary\Orchid\Helpers\Sights\ImageSight;
+use Orchid\MediaLibrary\Orchid\Helpers\Sights\FileSizeSight;
 use OrchidHelpers\Orchid\Traits\DeleteActionTrait;
 use Orchid\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\Conversions\FileManipulator;
@@ -119,6 +121,7 @@ class MediaShowScreen extends ModelScreen
             ]),
 
             ModelLegendLayout::make([
+                ImageSight::make('preview', __('Preview')),
                 IdSight::make(),
                 Sight::make('uuid'),
                 EntitySight::make('model', __('Object')),
@@ -131,7 +134,7 @@ class MediaShowScreen extends ModelScreen
                     ),
                 Sight::make('file_name', __('File name')),
                 Sight::make('mime_type', 'MIME'),
-                Sight::make('human_readable_size', __('Size')),
+                FileSizeSight::make('size', __('Size')),
                 Sight::make('disk', 'File system'),
                 Sight::make('conversions_disk', __('Conversion disk')),
                 Sight::make('order_column', __('Order')),

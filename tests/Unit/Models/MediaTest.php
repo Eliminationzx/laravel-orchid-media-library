@@ -5,10 +5,11 @@ namespace Orchid\MediaLibrary\Tests\Unit\Models;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Orchid\MediaLibrary\Models\Media;
 use Orchid\MediaLibrary\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class MediaTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_be_instantiated(): void
     {
         $media = new Media;
@@ -17,7 +18,7 @@ class MediaTest extends TestCase
         $this->assertInstanceOf(\Spatie\MediaLibrary\MediaCollections\Models\Media::class, $media);
     }
 
-    /** @test */
+    #[Test]
     public function it_uses_orchid_traits(): void
     {
         $media = new Media;
@@ -26,7 +27,7 @@ class MediaTest extends TestCase
         $this->assertContains('Orchid\Filters\Filterable', class_uses_recursive($media));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_allowed_filters(): void
     {
         $media = new Media;
@@ -36,7 +37,7 @@ class MediaTest extends TestCase
         $this->assertEquals($expectedFilters, $media->getAllowedFilters());
     }
 
-    /** @test */
+    #[Test]
     public function it_has_allowed_sorts(): void
     {
         $media = new Media;
@@ -54,7 +55,7 @@ class MediaTest extends TestCase
         $this->assertEquals($expectedSorts, $media->getAllowedSorts());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_created_with_factory(): void
     {
         // This test requires the Media factory to be properly set up
@@ -71,7 +72,7 @@ class MediaTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_has_morph_to_relationship(): void
     {
         $media = Media::factory()->create();
@@ -80,7 +81,7 @@ class MediaTest extends TestCase
         $this->assertInstanceOf(MorphTo::class, $media->model());
     }
 
-    /** @test */
+    #[Test]
     public function it_has_url_accessor(): void
     {
         $media = Media::factory()->create([

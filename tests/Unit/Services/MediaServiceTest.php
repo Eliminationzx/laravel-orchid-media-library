@@ -4,6 +4,7 @@ namespace Orchid\MediaLibrary\Tests\Unit\Services;
 
 use Orchid\MediaLibrary\Services\MediaService;
 use Orchid\MediaLibrary\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class MediaServiceTest extends TestCase
 {
@@ -27,7 +28,7 @@ class MediaServiceTest extends TestCase
         $this->assertEquals(['image/jpeg', 'image/png', 'image/gif'], MediaService::ALLOWED_MIME_TYPES);
     }
 
-    /** @test */
+    #[Test]
     public function constants_are_strings(): void
     {
         $this->assertIsString(MediaService::NAME);
@@ -48,7 +49,7 @@ class MediaServiceTest extends TestCase
         $this->assertIsArray(MediaService::ALLOWED_MIME_TYPES);
     }
 
-    /** @test */
+    #[Test]
     public function route_constants_are_built_correctly(): void
     {
         $this->assertStringStartsWith('platform.', MediaService::ROUTE);
@@ -58,7 +59,7 @@ class MediaServiceTest extends TestCase
         $this->assertEquals(MediaService::ROUTE.'edit', MediaService::ROUTE_EDIT);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_used_for_route_generation(): void
     {
         // Example of how the constants might be used
@@ -70,7 +71,7 @@ class MediaServiceTest extends TestCase
         $this->assertTrue(true);
     }
 
-    /** @test */
+    #[Test]
     public function icon_constant_is_valid_font_awesome_icon(): void
     {
         // 'film' is a valid Font Awesome icon name
@@ -78,7 +79,7 @@ class MediaServiceTest extends TestCase
         $this->assertContains(MediaService::ICON, $validIcons);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_customize_settings(): void
     {
         // Test default value
@@ -99,7 +100,7 @@ class MediaServiceTest extends TestCase
         $this->assertEquals(['image/jpeg', 'image/png', 'image/gif'], MediaService::getAllowedMimeTypes());
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_correct_values_from_getter_methods(): void
     {
         $this->assertEquals('Media', MediaService::getName());
@@ -115,7 +116,7 @@ class MediaServiceTest extends TestCase
         $this->assertEquals(['image/jpeg', 'image/png', 'image/gif'], MediaService::getAllowedMimeTypes());
     }
 
-    /** @test */
+    #[Test]
     public function customization_affects_all_getter_methods(): void
     {
         // Customize multiple settings

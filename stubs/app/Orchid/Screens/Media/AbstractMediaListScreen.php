@@ -42,13 +42,17 @@ use OrchidHelpers\Orchid\Helpers\TD\UpdatedAtTD;
 use OrchidHelpers\Orchid\Traits\DeleteActionTrait;
 use Orchid\MediaLibrary\Models\Media;
 use Orchid\MediaLibrary\Orchid\Helpers\TD\ImagePreviewTD;
+use Orchid\MediaLibrary\Orchid\Helpers\TD\FileSizeTD;
+use Orchid\MediaLibrary\Orchid\Helpers\TD\DimensionsTD;
+use Orchid\MediaLibrary\Traits\FilterableTrait;
+use Orchid\MediaLibrary\Traits\SortableTrait;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
 abstract class AbstractMediaListScreen extends AbstractScreen
 {
-    use DeleteActionTrait;
+    use DeleteActionTrait, FilterableTrait, SortableTrait;
 
     protected bool $multiple = false;
 
@@ -113,7 +117,8 @@ abstract class AbstractMediaListScreen extends AbstractScreen
                     ->filterOptions($this->collections),
                 BadgeTD::make('mime_type', 'MIME')
                     ->defaultHidden(),
-                TD::make('human_readable_size', __('Size')),
+                FileSizeTD::make('size', __('Size')),
+                DimensionsTD::make('dimensions', __('Dimensions'))->defaultHidden(),
                 TD::make('order_column', attrName('rating'))
                     ->render(static fn (Media $media): Input => Input::make("media[$media->id][order_column]")
                         ->type('number')

@@ -5,10 +5,11 @@ namespace Orchid\MediaLibrary\Tests\Feature\Providers;
 use Orchid\MediaLibrary\Console\Commands\InstallCommand;
 use Orchid\MediaLibrary\Providers\FoundationServiceProvider;
 use Orchid\MediaLibrary\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class FoundationServiceProviderTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_registers_commands(): void
     {
         $commands = $this->app->make(FoundationServiceProvider::class, ['app' => $this->app])->commands();
@@ -16,7 +17,7 @@ class FoundationServiceProviderTest extends TestCase
         $this->assertContains(InstallCommand::class, $commands);
     }
 
-    /** @test */
+    #[Test]
     public function it_boots_correctly(): void
     {
         $provider = new FoundationServiceProvider($this->app);
@@ -37,7 +38,7 @@ class FoundationServiceProviderTest extends TestCase
         $this->assertArrayHasKey('screens-stubs', $publishes);
     }
 
-    /** @test */
+    #[Test]
     public function it_registers_correct_service_provider(): void
     {
         $providers = $this->app->getProviders(FoundationServiceProvider::class);
@@ -46,7 +47,7 @@ class FoundationServiceProviderTest extends TestCase
         $this->assertInstanceOf(FoundationServiceProvider::class, $providers[0]);
     }
 
-    /** @test */
+    #[Test]
     public function it_provides_correct_package_name(): void
     {
         $provider = new FoundationServiceProvider($this->app);
@@ -55,7 +56,7 @@ class FoundationServiceProviderTest extends TestCase
         $this->assertEquals('orchid-laravel-media-library', $provider->getPackageName());
     }
 
-    /** @test */
+    #[Test]
     public function views_are_accessible(): void
     {
         // Test that a specific view from the package exists
@@ -64,7 +65,7 @@ class FoundationServiceProviderTest extends TestCase
         $this->assertStringContainsString('image-preview-component', $view->name());
     }
 
-    /** @test */
+    #[Test]
     public function it_has_correct_path_helper(): void
     {
         $provider = new FoundationServiceProvider($this->app);
