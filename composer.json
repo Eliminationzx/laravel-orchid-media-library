@@ -24,7 +24,7 @@
     "ext-json": "*",
     "laravel/framework": "^12.0",
     "orchid/platform": "^14.0",
-    "eliminationzx/laravel-orchid-helpers": "3.0.2",
+    "eliminationzx/laravel-orchid-helpers": "3.0.3",
     "spatie/laravel-medialibrary": "^11.0"
   },
   "require-dev": {
