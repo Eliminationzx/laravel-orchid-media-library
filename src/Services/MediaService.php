@@ -11,24 +11,6 @@ namespace OrchidMediaLibrary\Services;
  */
 class MediaService
 {
-    /**
-     * Default screen configuration.
-     */
-    public const SCREEN_NAME = 'Media';
-    public const SCREEN_ICON = 'film';
-    public const SCREEN_PLURAL = 'media';
-
-    /**
-     * Default route configuration.
-     */
-    public const ROUTE_PREFIX = 'platform';
-    public const ROUTE_MIDDLEWARE = ['web', 'platform'];
-    public const ROUTE_NAME_PREFIX = 'platform.';
-
-    /**
-     * Default media configuration.
-     */
-    public const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'];
 
     /**
      * Customization storage.
@@ -36,6 +18,18 @@ class MediaService
      * @var array<string, mixed>
      */
     private static array $customizations = [];
+
+    /**
+     * Get configuration value with fallback.
+     *
+     * @param  string  $key  Configuration key (e.g., 'screen.name')
+     * @param  mixed  $default  Default value if not found
+     * @return mixed Configuration value
+     */
+    private static function config(string $key, $default = null)
+    {
+        return config("orchid-media-library.{$key}", $default);
+    }
 
     /**
      * Customize media library settings.
@@ -56,7 +50,19 @@ class MediaService
      */
     public static function get(string $key, $default = null)
     {
-        return self::$customizations[$key] ?? $default;
+        // First check customizations
+        if (array_key_exists($key, self::$customizations)) {
+            return self::$customizations[$key];
+        }
+
+        // Then check configuration
+        $configValue = self::config($key);
+        if ($configValue !== null) {
+            return $configValue;
+        }
+
+        // Finally return default
+        return $default;
     }
 
     /**
@@ -74,7 +80,7 @@ class MediaService
      */
     public static function getName(): string
     {
-        return self::get('screen_name', self::SCREEN_NAME);
+        return self::config('screen.name', 'Media');
     }
 
     /**
@@ -84,7 +90,7 @@ class MediaService
      */
     public static function getIcon(): string
     {
-        return self::get('screen_icon', self::SCREEN_ICON);
+        return self::config('screen.icon', 'film');
     }
 
     /**
@@ -94,7 +100,7 @@ class MediaService
      */
     public static function getPlural(): string
     {
-        return self::get('screen_plural', self::SCREEN_PLURAL);
+        return self::config('screen.plural', 'media');
     }
 
     /**
@@ -104,7 +110,7 @@ class MediaService
      */
     public static function getRoutePrefix(): string
     {
-        return self::get('route_name_prefix', self::ROUTE_NAME_PREFIX);
+        return self::config('route.name_prefix', 'platform.');
     }
 
     /**
@@ -154,7 +160,10 @@ class MediaService
      */
     public static function getUrlPrefix(): string
     {
-        return self::get('route_url_prefix', self::ROUTE_PREFIX . '/' . self::getPlural());
+        $routePrefix = self::config('route.prefix', 'platform');
+        $plural = self::getPlural();
+        
+        return "{$routePrefix}/{$plural}";
     }
 
     /**
@@ -164,7 +173,7 @@ class MediaService
      */
     public static function getRouteMiddleware(): array
     {
-        return self::get('route_middleware', self::ROUTE_MIDDLEWARE);
+        return self::config('route.middleware', ['web', 'platform']);
     }
 
     /**
@@ -174,15 +183,17 @@ class MediaService
      */
     public static function getAllowedMimeTypes(): array
     {
-        return self::get('allowed_mime_types', self::ALLOWED_MIME_TYPES);
+        return self::config('media.allowed_mime_types', ['image/jpeg', 'image/png', 'image/gif']);
     }
 
-    // Legacy constants for backward compatibility (deprecated)
-    public const NAME = 'Media';
-    public const ICON = 'film';
-    public const PLURAL = 'media';
-    public const ROUTE = 'platform.media.';
-    public const ROUTE_LIST = 'platform.media.list';
-    public const ROUTE_SHOW = 'platform.media.show';
-    public const ROUTE_EDIT = 'platform.media.edit';
+    /**
+     * Get the maximum file size for uploads.
+     *
+     * @return int Maximum file size in kilobytes
+     */
+    public static function getMaxFileSize(): int
+    {
+        return self::config('media.max_file_size', 10240);
+    }
+
 }

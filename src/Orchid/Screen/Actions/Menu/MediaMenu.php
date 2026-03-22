@@ -11,8 +11,8 @@ class MediaMenu
 {
     public static function make(): Menu
     {
-        return Menu::make(MediaService::NAME)
-            ->icon(MediaService::ICON)
-            ->route(MediaService::ROUTE_LIST);
+        return Menu::make(MediaService::getName())
+            ->icon(MediaService::getIcon())
+            ->route(MediaService::getRouteList());
     }
 }

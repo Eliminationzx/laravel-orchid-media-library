@@ -15,44 +15,6 @@ use Spatie\MediaLibrary\HasMedia;
  */
 class ConversionService
 {
-    /**
-     * Platform conversion settings.
-     */
-    public const PLATFORM_CONVERSION = [
-        'width' => 100,
-        'height' => 100,
-        'crop' => 'center',
-        'quality' => 70,
-        'optimize' => true,
-        'queue' => false,
-        'enabled' => true,
-    ];
-
-    /**
-     * OpenGraph conversion settings.
-     */
-    public const OPENGRAPH_CONVERSION = [
-        'width' => 128,
-        'height' => 128,
-        'crop' => 'center',
-        'quality' => 80,
-        'optimize' => true,
-        'queue' => false,
-        'enabled' => true,
-    ];
-
-    /**
-     * Thumbnail conversion settings.
-     */
-    public const THUMBNAIL_CONVERSION = [
-        'width' => 300,
-        'height' => 300,
-        'crop' => 'center',
-        'quality' => 75,
-        'optimize' => true,
-        'queue' => false,
-        'enabled' => true,
-    ];
 
     /**
      * Get conversion configuration by name.
@@ -62,12 +24,7 @@ class ConversionService
      */
     public static function getConversion(string $name): array
     {
-        return match (strtolower($name)) {
-            'platform' => self::PLATFORM_CONVERSION,
-            'opengraph' => self::OPENGRAPH_CONVERSION,
-            'thumbnail' => self::THUMBNAIL_CONVERSION,
-            default => [],
-        };
+        return config("orchid-media-library.conversions.{$name}", []);
     }
 
     /**
@@ -96,7 +53,7 @@ class ConversionService
             return;
         }
 
-        $config = self::PLATFORM_CONVERSION;
+        $config = self::getConversion('platform');
 
         $conversion = $media->addMediaConversion('platform')
             ->keepOriginalImageFormat()
@@ -108,7 +65,7 @@ class ConversionService
             $conversion->optimize();
         }
 
-        if (! $config['queue']) {
+        if (! ($config['queue'] ?? false)) {
             $conversion->nonQueued();
         }
     }
@@ -127,7 +84,7 @@ class ConversionService
             return;
         }
 
-        $config = self::OPENGRAPH_CONVERSION;
+        $config = self::getConversion('opengraph');
 
         $cropMethod = $crop ? self::getCropMethod($crop) : self::getCropMethod($config['crop']);
 
@@ -141,7 +98,7 @@ class ConversionService
             $conversion->optimize();
         }
 
-        if (! $config['queue']) {
+        if (! ($config['queue'] ?? false)) {
             $conversion->nonQueued();
         }
     }
@@ -157,7 +114,7 @@ class ConversionService
             return;
         }
 
-        $config = self::THUMBNAIL_CONVERSION;
+        $config = self::getConversion('thumbnail');
 
         $conversion = $media->addMediaConversion('thumbnail')
             ->keepOriginalImageFormat()
@@ -169,7 +126,7 @@ class ConversionService
             $conversion->optimize();
         }
 
-        if (! $config['queue']) {
+        if (! ($config['queue'] ?? false)) {
             $conversion->nonQueued();
         }
     }

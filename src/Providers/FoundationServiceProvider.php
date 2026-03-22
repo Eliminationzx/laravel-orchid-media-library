@@ -30,6 +30,12 @@ class FoundationServiceProvider extends ServiceProvider
         $this->app->singleton(MediaService::class);
         $this->app->singleton(ConversionService::class);
 
+        // Merge package configuration
+        $this->mergeConfigFrom(
+            __DIR__.'/../../config/orchid-media-library.php',
+            'orchid-media-library'
+        );
+
         // Allow customization via service provider booted callback
         $this->app->booted(function () {
             if ($this->app->bound('orchid-media-library.customize')) {
@@ -48,7 +54,12 @@ class FoundationServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'orchid-laravel-media-library');
 
-        // Publish stubs (no configuration file)
+        // Publish configuration file
+        $this->publishes([
+            __DIR__.'/../../config/orchid-media-library.php' => config_path('orchid-media-library.php'),
+        ], 'orchid-media-library-config');
+
+        // Publish stubs
         $this->publishes([
             $this->path('stubs/routes') => base_path('routes/platform'),
             $this->path('stubs/app') => app_path(),

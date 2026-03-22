@@ -11,8 +11,8 @@ class MediaLink
 {
     public static function make(): Link
     {
-        return Link::make(MediaService::NAME)
-            ->icon(MediaService::ICON)
-            ->route(MediaService::ROUTE_LIST);
+        return Link::make(MediaService::getName())
+            ->icon(MediaService::getIcon())
+            ->route(MediaService::getRouteList());
     }
 }
