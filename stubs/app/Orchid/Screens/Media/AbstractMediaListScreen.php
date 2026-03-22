@@ -71,9 +71,9 @@ abstract class AbstractMediaListScreen extends AbstractScreen
                         ->type('file')
                         ->accept('image/jpeg,image/png,image/gif')
                         ->when($this->multiple, static fn(Input $field) : Input => $field->multiple())
-                        ->title('Загрузить файлы'),
+                        ->title('Upload files'),
                     Select::make('collection')
-                        ->title(__('Коллекция'))
+                        ->title(__('Collection'))
                         ->options($this->collections ?? [])
                         ->canSee(count($this->collections) > 1),
                     Input::make('collection')
@@ -81,7 +81,7 @@ abstract class AbstractMediaListScreen extends AbstractScreen
                         ->canSee(count($this->collections) === 1)
                         ->value(array_shift($array)),
                 ]),
-                Button::make(__('Отправить'))
+                Button::make(__('Submit'))
                     ->icon('save')
                     ->type(Color::DEFAULT())
                     ->method('saveMedia'),
@@ -94,16 +94,16 @@ abstract class AbstractMediaListScreen extends AbstractScreen
                     ->render(static fn(Media $media) : Input => Input::make("media[{$media->getAttribute('id')}][name]")
                         ->value($media->getAttribute('name'))
                     ),
-                EntityRelationTD::make('model', __('Объект'))
+                EntityRelationTD::make('model', __('Object'))
                     ->canSee($this->isHidden('model')),
-                TD::make('collection_name', __('Коллекция'))
+                TD::make('collection_name', __('Collection'))
                     ->defaultHidden()
                     ->sort()
                     ->filter(TD::FILTER_SELECT)
                     ->filterOptions($this->collections),
                 TD::make('mime_type', 'MIME')
                     ->defaultHidden(),
-                TD::make('human_readable_size', __('Размер')),
+                TD::make('human_readable_size', __('Size')),
                 TD::make('order_column', attrName('rating'))
                     ->render(static fn(Media $media) : Input => Input::make("media[$media->id][order_column]")
                         ->type('number')
@@ -126,8 +126,8 @@ abstract class AbstractMediaListScreen extends AbstractScreen
                         ->type(Color::DEFAULT())
                         ->method('updateMedia'),
 
-                    Button::make(__('Удалить все фотки'))
-                        ->confirm(__('Вы действительно хотите удалить все фотки?'))
+                    Button::make(__('Delete all photos'))
+                        ->confirm(__('Do you really want to delete all photos?'))
                         ->icon('trash')
                         ->method('destroyAllMedia')
                         ->canSee(method_exists($this, 'destroyAllMedia') && $this->authorize('delete', Media::class))
@@ -149,7 +149,7 @@ abstract class AbstractMediaListScreen extends AbstractScreen
             $this->addMedia($model, $file, $request->input('collection', 'default'));
         }
 
-        Alert::success(__('Файлы успешно добавлены!'));
+        Alert::success(__('Files successfully added!'));
     }
 
     /**

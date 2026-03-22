@@ -11,7 +11,7 @@ class ImagePreviewTD
 {
     public static function make() : TD
     {
-        return TD::make('media', __('Превью'))
+        return TD::make('media', __('Preview'))
             ->component(ImagePreviewComponent::class)
             ->width('50px')
             ->alignCenter();

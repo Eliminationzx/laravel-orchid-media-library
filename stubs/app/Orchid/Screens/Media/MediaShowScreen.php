@@ -86,7 +86,7 @@ class MediaShowScreen extends ModelScreen
     {
         return [
             DropdownOptions::make()->list([
-                Button::make(__('Регенерация'))
+                Button::make(__('Regeneration'))
                     ->icon('reload')
                     ->method('regenerate', [
                         'media' => $this->model->getAttribute('id'),
@@ -112,32 +112,32 @@ class MediaShowScreen extends ModelScreen
             ModelLegendLayout::make([
                 IdSight::make(),
                 Sight::make('uuid'),
-                EntitySight::make('model', __('Объект')),
+                EntitySight::make('model', __('Object')),
                 Sight::make('name'),
-                Sight::make('originalUrl', __('Ссылка'))
+                Sight::make('originalUrl', __('Link'))
                     ->render(static fn(Media $media) : Link => Link::make($media->originalUrl)
                         ->icon('link')
                         ->target('_blank')
                         ->href($media->originalUrl)
                     ),
-                Sight::make('file_name', __('Название файла')),
+                Sight::make('file_name', __('File name')),
                 Sight::make('mime_type', 'MIME'),
-                Sight::make('human_readable_size', __('Размер')),
-                Sight::make('disk', 'Файловая система'),
+                Sight::make('human_readable_size', __('Size')),
+                Sight::make('disk', 'File system'),
                 Sight::make('conversions_disk', __('Conversion disk')),
-                Sight::make('order_column', __('Порядок')),
-                Sight::make('collection_name', __('Коллекция')),
+                Sight::make('order_column', __('Order')),
+                Sight::make('collection_name', __('Collection')),
             ]),
 
             ModelTimestampsLayout::make(),
 
             Layout::table('generated_conversions', [
-                BoolTD::make('generated', __('Сгенерирован')),
+                BoolTD::make('generated', __('Generated')),
                 TD::make('conversion')->alignLeft(),
                 LinkTD::make('url'),
                 TD::make('size')->alignRight(),
             ])
-                ->title(__('Преобразования')),
+                ->title(__('Conversions')),
         ];
     }
 
@@ -148,7 +148,7 @@ class MediaShowScreen extends ModelScreen
         if($media instanceof Media) {
             $fileManipulator->createDerivedFiles($media);
 
-            Alert::success(__('Изображение обновлено!'));
+            Alert::success(__('Image updated!'));
         }
 
         return back();

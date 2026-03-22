@@ -31,7 +31,7 @@ Route::name('platform.')
                 ->name('edit')
                 ->breadcrumbs(static fn(Trail $trail, Media $media) : Trail => $trail
                     ->parent(MediaService::ROUTE_SHOW, $media)
-                    ->push(__('Редактировать'), route(MediaService::ROUTE_EDIT, $media))
+                    ->push(__('Edit'), route(MediaService::ROUTE_EDIT, $media))
                 );
         });
     });

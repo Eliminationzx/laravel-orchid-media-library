@@ -6,7 +6,7 @@ namespace OrchidMediaLibrary\Services;
 
 class MediaService
 {
-    public const NAME       = 'Медиа';
+    public const NAME       = 'Media';
 
     public const ICON       = 'film';
 
