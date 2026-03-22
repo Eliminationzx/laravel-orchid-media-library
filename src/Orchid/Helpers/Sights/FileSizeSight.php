@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Orchid\MediaLibrary\Orchid\Helpers\Sights;
+namespace OrchidMediaLibrary\Orchid\Helpers\Sights;
 
 use Orchid\Screen\Sight;
-use Orchid\MediaLibrary\Models\Media;
+use OrchidMediaLibrary\Models\Media;
 use Spatie\MediaLibrary\Support\File;
 
 class FileSizeSight

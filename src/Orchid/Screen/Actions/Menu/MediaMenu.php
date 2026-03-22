@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Orchid\MediaLibrary\Orchid\Screen\Actions\Menu;
+namespace OrchidMediaLibrary\Orchid\Screen\Actions\Menu;
 
 use Orchid\Screen\Actions\Menu;
-use Orchid\MediaLibrary\Services\MediaService;
+use OrchidMediaLibrary\Services\MediaService;
 
 class MediaMenu
 {

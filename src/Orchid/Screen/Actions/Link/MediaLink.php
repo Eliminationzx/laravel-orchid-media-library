@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Orchid\MediaLibrary\Orchid\Screen\Actions\Link;
+namespace OrchidMediaLibrary\Orchid\Screen\Actions\Link;
 
 use Orchid\Screen\Actions\Link;
-use Orchid\MediaLibrary\Services\MediaService;
+use OrchidMediaLibrary\Services\MediaService;
 
 class MediaLink
 {

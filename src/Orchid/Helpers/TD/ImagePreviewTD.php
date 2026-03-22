@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Orchid\MediaLibrary\Orchid\Helpers\TD;
+namespace OrchidMediaLibrary\Orchid\Helpers\TD;
 
 use Orchid\Screen\TD;
-use Orchid\MediaLibrary\View\Components\Platform\ImagePreviewComponent;
+use OrchidMediaLibrary\View\Components\Platform\ImagePreviewComponent;
 
 class ImagePreviewTD
 {

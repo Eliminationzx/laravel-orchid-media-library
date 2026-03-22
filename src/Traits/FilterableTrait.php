@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\MediaLibrary\Traits;
+namespace OrchidMediaLibrary\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use Orchid\Screen\Layouts\Selection;

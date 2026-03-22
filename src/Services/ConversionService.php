@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\MediaLibrary\Services;
+namespace OrchidMediaLibrary\Services;
 
 use Spatie\Image\Exceptions\InvalidManipulation;
 use Spatie\Image\Manipulations;

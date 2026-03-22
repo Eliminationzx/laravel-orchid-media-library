@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\MediaLibrary\Models;
+namespace OrchidMediaLibrary\Models;
 
 use Illuminate\Support\Carbon;
 use Orchid\Filters\Filterable;

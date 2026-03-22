@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\MediaLibrary\View\Components\Platform;
+namespace OrchidMediaLibrary\View\Components\Platform;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
