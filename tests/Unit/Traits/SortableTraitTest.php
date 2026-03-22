@@ -1,11 +1,11 @@
 <?php
 
-namespace Orchid\MediaLibrary\Tests\Unit\Traits;
+namespace OrchidMediaLibrary\Tests\Unit\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\MediaLibrary\Tests\TestCase;
-use Orchid\MediaLibrary\Traits\SortableTrait;
+use OrchidMediaLibrary\Tests\TestCase;
+use OrchidMediaLibrary\Traits\SortableTrait;
 use PHPUnit\Framework\Attributes\Test;
 
 // Create a test model that uses the SortableTrait

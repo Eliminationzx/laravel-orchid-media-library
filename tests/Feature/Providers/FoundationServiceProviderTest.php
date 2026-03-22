@@ -1,10 +1,10 @@
 <?php
 
-namespace Orchid\MediaLibrary\Tests\Feature\Providers;
+namespace OrchidMediaLibrary\Tests\Feature\Providers;
 
-use Orchid\MediaLibrary\Console\Commands\InstallCommand;
-use Orchid\MediaLibrary\Providers\FoundationServiceProvider;
-use Orchid\MediaLibrary\Tests\TestCase;
+use OrchidMediaLibrary\Console\Commands\InstallCommand;
+use OrchidMediaLibrary\Providers\FoundationServiceProvider;
+use OrchidMediaLibrary\Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
 class FoundationServiceProviderTest extends TestCase

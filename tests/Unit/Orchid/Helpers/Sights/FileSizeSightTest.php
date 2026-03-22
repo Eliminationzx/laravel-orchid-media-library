@@ -1,10 +1,10 @@
 <?php
 
-namespace Orchid\MediaLibrary\Tests\Unit\Orchid\Helpers\Sights;
+namespace OrchidMediaLibrary\Tests\Unit\Orchid\Helpers\Sights;
 
-use Orchid\MediaLibrary\Models\Media;
-use Orchid\MediaLibrary\Orchid\Helpers\Sights\FileSizeSight;
-use Orchid\MediaLibrary\Tests\TestCase;
+use OrchidMediaLibrary\Models\Media;
+use OrchidMediaLibrary\Orchid\Helpers\Sights\FileSizeSight;
+use OrchidMediaLibrary\Tests\TestCase;
 use Orchid\Screen\Sight;
 use PHPUnit\Framework\Attributes\Test;
 

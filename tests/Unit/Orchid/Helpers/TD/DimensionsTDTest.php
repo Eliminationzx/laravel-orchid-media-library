@@ -1,10 +1,10 @@
 <?php
 
-namespace Orchid\MediaLibrary\Tests\Unit\Orchid\Helpers\TD;
+namespace OrchidMediaLibrary\Tests\Unit\Orchid\Helpers\TD;
 
-use Orchid\MediaLibrary\Models\Media;
-use Orchid\MediaLibrary\Orchid\Helpers\TD\DimensionsTD;
-use Orchid\MediaLibrary\Tests\TestCase;
+use OrchidMediaLibrary\Models\Media;
+use OrchidMediaLibrary\Orchid\Helpers\TD\DimensionsTD;
+use OrchidMediaLibrary\Tests\TestCase;
 use Orchid\Screen\TD;
 use PHPUnit\Framework\Attributes\Test;
 
