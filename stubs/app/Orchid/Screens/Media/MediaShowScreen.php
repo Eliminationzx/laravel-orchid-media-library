@@ -12,10 +12,11 @@ use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
-use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
+use OrchidHelpers\Orchid\Helpers\Alerts\ToastAlert;
 use OrchidHelpers\Orchid\Helpers\Layouts\ModelLegendLayout;
 use OrchidHelpers\Orchid\Helpers\Layouts\ModelTimestampsLayout;
+use OrchidHelpers\Orchid\Helpers\Buttons\DownloadButton;
 use OrchidHelpers\Orchid\Helpers\Links\DeleteLink;
 use OrchidHelpers\Orchid\Helpers\Links\DropdownOptions;
 use OrchidHelpers\Orchid\Helpers\Links\EditLink;
@@ -90,6 +91,10 @@ class MediaShowScreen extends ModelScreen
     {
         return [
             DropdownOptions::make()->list([
+                DownloadButton::make(__('Download'))
+                    ->icon('cloud-download')
+                    ->href($this->model->getFullUrl())
+                    ->target('_blank'),
                 Button::make(__('Regeneration'))
                     ->icon('reload')
                     ->method('regenerate', [
@@ -152,7 +157,7 @@ class MediaShowScreen extends ModelScreen
         if ($media instanceof Media) {
             $fileManipulator->createDerivedFiles($media);
 
-            Alert::success(__('Image updated!'));
+            ToastAlert::make(__('Image updated!'));
         }
 
         return back();

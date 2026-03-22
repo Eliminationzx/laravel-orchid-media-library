@@ -9,11 +9,12 @@ use Orchid\MediaLibrary\View\Components\Platform\ImagePreviewComponent;
 
 class ImagePreviewTD
 {
-    public static function make(): TD
+    public static function make(string $column = 'media', string $title = null): TD
     {
-        return TD::make('media', __('Preview'))
+        return TD::make($column, $title ?? __('Preview'))
             ->component(ImagePreviewComponent::class)
-            ->width('50px')
-            ->alignCenter();
+            ->width('80px')
+            ->alignCenter()
+            ->sort();
     }
 }

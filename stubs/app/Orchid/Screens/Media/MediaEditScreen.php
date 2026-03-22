@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Orchid\Screen\Fields\Input;
 use Orchid\Support\Facades\Layout;
+use OrchidHelpers\Orchid\Helpers\Alerts\InfoAlert;
 use OrchidHelpers\Orchid\Helpers\Alerts\SaveAlert;
 use OrchidHelpers\Orchid\Helpers\Screens\EditScreen;
 use Orchid\MediaLibrary\Models\Media;
@@ -25,6 +26,11 @@ class MediaEditScreen extends EditScreen
     public function layout(): iterable
     {
         return [
+            Layout::rows([
+                InfoAlert::make(__('Supported file formats: JPEG, PNG, GIF, PDF, and other common media types. Maximum file size: 10MB.'))
+                    ->title(__('File Format Information')),
+            ]),
+
             Layout::rows([
                 Input::make($this->field('name'))->title(attrName('name')),
                 Input::make($this->field('name_en'))->title(attrName('name').' EN'),

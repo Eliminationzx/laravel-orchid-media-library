@@ -17,9 +17,15 @@ use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\TD;
 use Orchid\Support\Color;
-use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
+use OrchidHelpers\Orchid\Helpers\Alerts\ErrorAlert;
+use OrchidHelpers\Orchid\Helpers\Alerts\InfoAlert;
 use OrchidHelpers\Orchid\Helpers\Alerts\SaveAlert;
+use OrchidHelpers\Orchid\Helpers\Alerts\SuccessAlert;
+use OrchidHelpers\Orchid\Helpers\Alerts\ToastAlert;
+use OrchidHelpers\Orchid\Helpers\Alerts\WarningAlert;
+use OrchidHelpers\Orchid\Helpers\Buttons\AddButton;
+use OrchidHelpers\Orchid\Helpers\Buttons\DeleteButton;
 use OrchidHelpers\Orchid\Helpers\Buttons\SaveButton;
 use OrchidHelpers\Orchid\Helpers\Layouts\ModelsTableLayout;
 use OrchidHelpers\Orchid\Helpers\Links\DeleteLink;
@@ -27,9 +33,11 @@ use OrchidHelpers\Orchid\Helpers\Links\DropdownOptions;
 use OrchidHelpers\Orchid\Helpers\Links\ShowLink;
 use OrchidHelpers\Orchid\Helpers\Screens\AbstractScreen;
 use OrchidHelpers\Orchid\Helpers\TD\ActionsTD;
+use OrchidHelpers\Orchid\Helpers\TD\BadgeTD;
 use OrchidHelpers\Orchid\Helpers\TD\CreatedAtTD;
 use OrchidHelpers\Orchid\Helpers\TD\EntityRelationTD;
 use OrchidHelpers\Orchid\Helpers\TD\IdTD;
+use OrchidHelpers\Orchid\Helpers\TD\TruncatedTextTD;
 use OrchidHelpers\Orchid\Helpers\TD\UpdatedAtTD;
 use OrchidHelpers\Orchid\Traits\DeleteActionTrait;
 use Orchid\MediaLibrary\Models\Media;
@@ -85,9 +93,7 @@ abstract class AbstractMediaListScreen extends AbstractScreen
                         ->canSee(count($this->collections) === 1)
                         ->value(array_shift($array)),
                 ]),
-                Button::make(__('Submit'))
-                    ->icon('save')
-                    ->type(Color::DEFAULT())
+                AddButton::make(__('Upload Media'))
                     ->method('saveMedia'),
             ])->canSee(method_exists($this, 'saveMedia')),
 
@@ -100,12 +106,12 @@ abstract class AbstractMediaListScreen extends AbstractScreen
                     ),
                 EntityRelationTD::make('model', __('Object'))
                     ->canSee($this->isHidden('model')),
-                TD::make('collection_name', __('Collection'))
+                BadgeTD::make('collection_name', __('Collection'))
                     ->defaultHidden()
                     ->sort()
                     ->filter(TD::FILTER_SELECT)
                     ->filterOptions($this->collections),
-                TD::make('mime_type', 'MIME')
+                BadgeTD::make('mime_type', 'MIME')
                     ->defaultHidden(),
                 TD::make('human_readable_size', __('Size')),
                 TD::make('order_column', attrName('rating'))
@@ -130,12 +136,10 @@ abstract class AbstractMediaListScreen extends AbstractScreen
                         ->type(Color::DEFAULT())
                         ->method('updateMedia'),
 
-                    Button::make(__('Delete all photos'))
+                    DeleteButton::make(__('Delete all photos'))
                         ->confirm(__('Do you really want to delete all photos?'))
-                        ->icon('trash')
                         ->method('destroyAllMedia')
-                        ->canSee(method_exists($this, 'destroyAllMedia') && $this->authorize('delete', Media::class))
-                        ->class('btn btn-danger float-end'),
+                        ->canSee(method_exists($this, 'destroyAllMedia') && $this->authorize('delete', Media::class)),
                 ])->alignEnd(),
             ]),
         ];
@@ -150,7 +154,7 @@ abstract class AbstractMediaListScreen extends AbstractScreen
         $media = $request->file(str_replace('[]', '', 'media'));
 
         if (! $media) {
-            Alert::error(__('No files were uploaded.'));
+            ErrorAlert::make(__('No files were uploaded.'));
 
             return;
         }
@@ -159,7 +163,7 @@ abstract class AbstractMediaListScreen extends AbstractScreen
             $this->addMedia($model, $file, $request->input('collection', 'default'));
         }
 
-        Alert::success(__('Files successfully added!'));
+        SuccessAlert::make(__('Files successfully added!'));
     }
 
     /**
