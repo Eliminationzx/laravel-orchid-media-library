@@ -205,49 +205,6 @@ TD::make('preview', 'Preview')
     ->width('100px'),
 ```
 
-## 🔄 Migration from v1.x to v2.0
-
-Version 2.0 introduces a comprehensive configuration system and modern PHP features. Here's what you need to know:
-
-### Breaking Changes
-
-1. **PHP Requirement**: Minimum PHP version is now 8.3 (was 8.1)
-2. **Configuration System**: All hardcoded values have been moved to configuration files
-3. **Type Safety**: Strict typing and type hints throughout the codebase
-4. **Service Structure**: Services now use dependency injection and configuration-based approach
-
-### Migration Steps
-
-1. **Configuration File Removed**: The `config/orchid-media-library.php` file has been eliminated
-2. **Constants-Based Architecture**: All settings are now defined as class constants
-3. **Runtime Customization**: Use `MediaService::customize()` instead of configuration files
-4. **Test Thoroughly**: Run your application tests to ensure compatibility with the new architecture
-
-### Configuration Migration Example
-
-**Before (v1.x - configuration-based):**
-```php
-// In config/orchid-media-library.php
-'max_file_size' => 10 * 1024 * 1024,
-
-// In your code
-$maxSize = config('orchid-media-library.basic.max_file_size');
-```
-
-**After (v2.0 - configuration-free):**
-```php
-// No configuration file needed
-// Media-specific settings use Spatie's configuration
-$maxSize = config('media-library.max_file_size');
-
-// Package-specific settings use constants or runtime customization
-MediaService::customize([
-    'allowed_mime_types' => ['image/jpeg', 'image/png', 'image/gif', 'image/webp'],
-]);
-
-$allowedTypes = MediaService::getAllowedMimeTypes();
-```
-
 ## 🧪 Testing
 
 The package includes a comprehensive test suite. To run tests:
