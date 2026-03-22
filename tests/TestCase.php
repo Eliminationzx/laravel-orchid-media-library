@@ -1,12 +1,12 @@
 <?php
 
-namespace OrchidMediaLibrary\Tests;
+namespace Orchid\MediaLibrary\Tests;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Orchid\Platform\Models\User;
-use OrchidMediaLibrary\Providers\FoundationServiceProvider;
+use Orchid\MediaLibrary\Providers\FoundationServiceProvider;
 
 abstract class TestCase extends OrchestraTestCase
 {

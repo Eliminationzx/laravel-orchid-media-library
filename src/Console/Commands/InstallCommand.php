@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace OrchidMediaLibrary\Console\Commands;
+namespace Orchid\MediaLibrary\Console\Commands;
 
 use Illuminate\Console\Command;
-use OrchidMediaLibrary\Providers\FoundationServiceProvider;
+use Orchid\MediaLibrary\Providers\FoundationServiceProvider;
 use Spatie\MediaLibrary\MediaLibraryServiceProvider;
 
 class InstallCommand extends Command

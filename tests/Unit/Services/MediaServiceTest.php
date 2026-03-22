@@ -1,9 +1,9 @@
 <?php
 
-namespace OrchidMediaLibrary\Tests\Unit\Services;
+namespace Orchid\MediaLibrary\Tests\Unit\Services;
 
-use OrchidMediaLibrary\Services\MediaService;
-use OrchidMediaLibrary\Tests\TestCase;
+use Orchid\MediaLibrary\Services\MediaService;
+use Orchid\MediaLibrary\Tests\TestCase;
 
 class MediaServiceTest extends TestCase
 {

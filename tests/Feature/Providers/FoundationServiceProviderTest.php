@@ -1,10 +1,10 @@
 <?php
 
-namespace OrchidMediaLibrary\Tests\Feature\Providers;
+namespace Orchid\MediaLibrary\Tests\Feature\Providers;
 
-use OrchidMediaLibrary\Console\Commands\InstallCommand;
-use OrchidMediaLibrary\Providers\FoundationServiceProvider;
-use OrchidMediaLibrary\Tests\TestCase;
+use Orchid\MediaLibrary\Console\Commands\InstallCommand;
+use Orchid\MediaLibrary\Providers\FoundationServiceProvider;
+use Orchid\MediaLibrary\Tests\TestCase;
 
 class FoundationServiceProviderTest extends TestCase
 {

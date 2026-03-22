@@ -36,13 +36,13 @@
   },
   "autoload": {
     "psr-4": {
-      "OrchidMediaLibrary\\": "src/"
+      "Orchid\\MediaLibrary\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
       "App\\": "stubs/app/",
-      "OrchidMediaLibrary\\Tests\\": "tests/"
+      "Orchid\\MediaLibrary\\Tests\\": "tests/"
     }
   },
   "scripts": {
@@ -54,7 +54,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "OrchidMediaLibrary\\Providers\\FoundationServiceProvider"
+        "Orchid\\MediaLibrary\\Providers\\FoundationServiceProvider"
       ]
     }
   },

@@ -10,7 +10,7 @@ use Orchid\Screen\Fields\Input;
 use Orchid\Support\Facades\Layout;
 use OrchidHelpers\Orchid\Helpers\Alerts\SaveAlert;
 use OrchidHelpers\Orchid\Helpers\Screens\EditScreen;
-use OrchidMediaLibrary\Models\Media;
+use Orchid\MediaLibrary\Models\Media;
 
 /**
  * @property Media $model

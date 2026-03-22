@@ -1,10 +1,10 @@
 <?php
 
-namespace OrchidMediaLibrary\Tests\Unit\Models;
+namespace Orchid\MediaLibrary\Tests\Unit\Models;
 
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use OrchidMediaLibrary\Models\Media;
-use OrchidMediaLibrary\Tests\TestCase;
+use Orchid\MediaLibrary\Models\Media;
+use Orchid\MediaLibrary\Tests\TestCase;
 
 class MediaTest extends TestCase
 {

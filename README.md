@@ -147,7 +147,7 @@ Once installed, the media library will be available in your Orchid admin panel a
 The package provides a `MediaService` class for accessing configuration-based settings:
 
 ```php
-use OrchidMediaLibrary\Services\MediaService;
+use Orchid\MediaLibrary\Services\MediaService;
 
 // Get screen configuration
 $screenName = MediaService::getName(); // 'Media'
@@ -164,7 +164,7 @@ $editRoute = MediaService::getRouteEdit(); // 'platform.media.edit'
 The `ConversionService` provides methods for working with image conversions:
 
 ```php
-use OrchidMediaLibrary\Services\ConversionService;
+use Orchid\MediaLibrary\Services\ConversionService;
 
 // Apply a conversion to media
 $convertedUrl = ConversionService::applyConversion($media, 'thumbnail');
@@ -198,7 +198,7 @@ Use the included Blade components to display media in your views:
 Use the included TD (Table Definition) components in your Orchid screens:
 
 ```php
-use OrchidMediaLibrary\Orchid\Helpers\TD\ImagePreviewTD;
+use Orchid\MediaLibrary\Orchid\Helpers\TD\ImagePreviewTD;
 
 TD::make('preview', 'Preview')
     ->component(ImagePreviewTD::class)

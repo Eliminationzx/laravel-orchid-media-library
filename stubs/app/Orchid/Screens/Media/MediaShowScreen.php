@@ -26,7 +26,7 @@ use OrchidHelpers\Orchid\Helpers\Sights\Sight;
 use OrchidHelpers\Orchid\Helpers\TD\BoolTD;
 use OrchidHelpers\Orchid\Helpers\TD\LinkTD;
 use OrchidHelpers\Orchid\Traits\DeleteActionTrait;
-use OrchidMediaLibrary\Models\Media;
+use Orchid\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\Conversions\FileManipulator;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\InvalidConversion;
 use Spatie\MediaLibrary\Support\File;

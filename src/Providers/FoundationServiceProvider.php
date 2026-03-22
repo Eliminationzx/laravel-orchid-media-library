@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace OrchidMediaLibrary\Providers;
+namespace Orchid\MediaLibrary\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use OrchidMediaLibrary\Console\Commands\InstallCommand;
-use OrchidMediaLibrary\Services\ConversionService;
-use OrchidMediaLibrary\Services\MediaService;
+use Orchid\MediaLibrary\Console\Commands\InstallCommand;
+use Orchid\MediaLibrary\Services\ConversionService;
+use Orchid\MediaLibrary\Services\MediaService;
 
 /**
  * Foundation service provider for Laravel Orchid Media Library.

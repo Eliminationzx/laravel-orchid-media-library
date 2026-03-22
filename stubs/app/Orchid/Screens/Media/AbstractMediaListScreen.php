@@ -32,8 +32,8 @@ use OrchidHelpers\Orchid\Helpers\TD\EntityRelationTD;
 use OrchidHelpers\Orchid\Helpers\TD\IdTD;
 use OrchidHelpers\Orchid\Helpers\TD\UpdatedAtTD;
 use OrchidHelpers\Orchid\Traits\DeleteActionTrait;
-use OrchidMediaLibrary\Models\Media;
-use OrchidMediaLibrary\Orchid\Helpers\TD\ImagePreviewTD;
+use Orchid\MediaLibrary\Models\Media;
+use Orchid\MediaLibrary\Orchid\Helpers\TD\ImagePreviewTD;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
@@ -73,7 +73,7 @@ abstract class AbstractMediaListScreen extends AbstractScreen
                 Group::make([
                     Input::make('media[]')
                         ->type('file')
-                        ->accept(implode(',', \OrchidMediaLibrary\Services\MediaService::getAllowedMimeTypes()))
+                        ->accept(implode(',', \Orchid\MediaLibrary\Services\MediaService::getAllowedMimeTypes()))
                         ->when($this->multiple, static fn (Input $field): Input => $field->multiple())
                         ->title('Upload files'),
                     Select::make('collection')
