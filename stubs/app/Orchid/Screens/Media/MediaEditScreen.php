@@ -6,34 +6,34 @@ namespace App\Orchid\Screens\Media;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Orchid\Screen\Fields\Input;
+use Orchid\Support\Facades\Layout;
 use OrchidHelpers\Orchid\Helpers\Alerts\SaveAlert;
 use OrchidHelpers\Orchid\Helpers\Screens\EditScreen;
 use OrchidMediaLibrary\Models\Media;
-use Orchid\Screen\Fields\Input;
-use Orchid\Support\Facades\Layout;
 
 /**
  * @property Media $model
  */
 class MediaEditScreen extends EditScreen
 {
-    public function query(Media $media) : iterable
+    public function query(Media $media): iterable
     {
         return $this->model($media);
     }
 
-    public function layout() : iterable
+    public function layout(): iterable
     {
         return [
             Layout::rows([
                 Input::make($this->field('name'))->title(attrName('name')),
-                Input::make($this->field('name_en'))->title(attrName('name') . ' EN'),
+                Input::make($this->field('name_en'))->title(attrName('name').' EN'),
                 Input::make($this->field('order_column'))->title(attrName('order_column')),
             ]),
         ];
     }
 
-    public function save(Media $media, Request $request) : RedirectResponse
+    public function save(Media $media, Request $request): RedirectResponse
     {
         $media->fill($request->input('model'))->save();
 

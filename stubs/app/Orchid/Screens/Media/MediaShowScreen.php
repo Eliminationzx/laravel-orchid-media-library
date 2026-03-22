@@ -1,10 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Screens\Media;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use JetBrains\PhpStorm\ArrayShape;
+use Orchid\Screen\Action;
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Repository;
+use Orchid\Screen\TD;
+use Orchid\Support\Facades\Alert;
+use Orchid\Support\Facades\Layout;
 use OrchidHelpers\Orchid\Helpers\Layouts\ModelLegendLayout;
 use OrchidHelpers\Orchid\Helpers\Layouts\ModelTimestampsLayout;
 use OrchidHelpers\Orchid\Helpers\Links\DeleteLink;
@@ -18,17 +27,13 @@ use OrchidHelpers\Orchid\Helpers\TD\BoolTD;
 use OrchidHelpers\Orchid\Helpers\TD\LinkTD;
 use OrchidHelpers\Orchid\Traits\DeleteActionTrait;
 use OrchidMediaLibrary\Models\Media;
-use Orchid\Screen\Actions\Button;
-use Orchid\Screen\Actions\Link;
-use Orchid\Screen\Repository;
-use Orchid\Screen\TD;
-use Orchid\Support\Facades\Alert;
-use Orchid\Support\Facades\Layout;
 use Spatie\MediaLibrary\Conversions\FileManipulator;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\InvalidConversion;
 use Spatie\MediaLibrary\Support\File;
 
 /**
+ * Media show screen for Laravel Orchid Media Library.
+ *
  * @property Media $model
  */
 class MediaShowScreen extends ModelScreen
@@ -36,28 +41,29 @@ class MediaShowScreen extends ModelScreen
     use DeleteActionTrait;
 
     /**
-     * Query data.
+     * Query data for media show screen.
      *
-     * @return array
+     * @param  Media  $media  Media entity to display
+     * @return iterable Screen data
      */
     #[ArrayShape([0 => 'iterable', 'generated_conversions' => 'iterable'])]
-    public function query(Media $media) : iterable
+    public function query(Media $media): iterable
     {
         return [
             ...$this->model($media->loadCount('activities')),
             'generated_conversions' => collect($media->getAttribute('generated_conversions'))
                 ->keys()
-                ->map(static function(string $conversion) use ($media) : Repository {
+                ->map(static function (string $conversion) use ($media): Repository {
                     $data = [
                         'conversion' => $conversion,
-                        'url'        => null,
-                        'size'       => null,
-                        'generated'  => false,
+                        'url' => null,
+                        'size' => null,
+                        'generated' => false,
                     ];
 
                     try {
-                        $data['url']       = $media->getUrl($conversion);
-                        $data['size']      = file_exists($media->getPath($conversion)) ? File::getHumanReadableSize(filesize($media->getPath($conversion))) : null;
+                        $data['url'] = $media->getUrl($conversion);
+                        $data['size'] = file_exists($media->getPath($conversion)) ? File::getHumanReadableSize(filesize($media->getPath($conversion))) : null;
                         $data['generated'] = $media->hasGeneratedConversion($conversion);
                     } catch (InvalidConversion) {
                     }
@@ -69,10 +75,8 @@ class MediaShowScreen extends ModelScreen
 
     /**
      * Display header name.
-     *
-     * @return string|null
      */
-    public function name() : ?string
+    public function name(): ?string
     {
         return $this->model->getAttribute('name');
     }
@@ -80,9 +84,9 @@ class MediaShowScreen extends ModelScreen
     /**
      * Button commands.
      *
-     * @return \Orchid\Screen\Action[]
+     * @return Action[]
      */
-    public function commandBar() : iterable
+    public function commandBar(): iterable
     {
         return [
             DropdownOptions::make()->list([
@@ -102,7 +106,7 @@ class MediaShowScreen extends ModelScreen
      *
      * @return \Orchid\Screen\Layout[]|string[]
      */
-    public function layout() : iterable
+    public function layout(): iterable
     {
         return [
             Layout::view('platform.media.show', [
@@ -115,7 +119,7 @@ class MediaShowScreen extends ModelScreen
                 EntitySight::make('model', __('Object')),
                 Sight::make('name'),
                 Sight::make('originalUrl', __('Link'))
-                    ->render(static fn(Media $media) : Link => Link::make($media->originalUrl)
+                    ->render(static fn (Media $media): Link => Link::make($media->originalUrl)
                         ->icon('link')
                         ->target('_blank')
                         ->href($media->originalUrl)
@@ -141,11 +145,11 @@ class MediaShowScreen extends ModelScreen
         ];
     }
 
-    public function regenerate(Request $request, FileManipulator $fileManipulator) : RedirectResponse
+    public function regenerate(Request $request, FileManipulator $fileManipulator): RedirectResponse
     {
         $media = Media::query()->find($request->input('media'));
 
-        if($media instanceof Media) {
+        if ($media instanceof Media) {
             $fileManipulator->createDerivedFiles($media);
 
             Alert::success(__('Image updated!'));

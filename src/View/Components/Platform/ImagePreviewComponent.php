@@ -22,7 +22,7 @@ class ImagePreviewComponent extends Component
     /**
      * Get the view / contents that represent the component.
      */
-    public function render() : View
+    public function render(): View
     {
         return view('orchid-laravel-media-library::components.platform.image-preview-component');
     }

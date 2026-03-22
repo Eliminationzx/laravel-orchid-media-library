@@ -10,7 +10,7 @@ use JetBrains\PhpStorm\ArrayShape;
 class MediaListScreen extends AbstractMediaListScreen
 {
     #[ArrayShape(['models' => LengthAwarePaginator::class])]
-    public function query() : iterable
+    public function query(): iterable
     {
         return [
             'models' => $this

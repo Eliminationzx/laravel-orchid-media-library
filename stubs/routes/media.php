@@ -10,28 +10,28 @@ use OrchidMediaLibrary\Models\Media;
 use OrchidMediaLibrary\Services\MediaService;
 use Tabuna\Breadcrumbs\Trail;
 
-Route::name('platform.')
-    ->group(static function() {
+Route::name(MediaService::getRoutePrefix())
+    ->group(static function () {
         Route::screen('', MediaListScreen::class)
             ->name('list')
-            ->breadcrumbs(static fn(Trail $trail) : Trail => $trail
+            ->breadcrumbs(static fn (Trail $trail): Trail => $trail
                 ->parent('platform.index')
-                ->push(MediaService::NAME, route(MediaService::ROUTE_LIST))
+                ->push(MediaService::getName(), route(MediaService::getRouteList()))
             );
 
-        Route::prefix('{media}')->group(static function() {
+        Route::prefix('{media}')->group(static function () {
             Route::screen('', MediaShowScreen::class)
                 ->name('show')
-                ->breadcrumbs(static fn(Trail $trail, Media $media) : Trail => $trail
-                    ->parent(MediaService::ROUTE_LIST)
-                    ->push($media->getAttribute('name'), route(MediaService::ROUTE_SHOW, $media))
+                ->breadcrumbs(static fn (Trail $trail, Media $media): Trail => $trail
+                    ->parent(MediaService::getRouteList())
+                    ->push($media->getAttribute('name'), route(MediaService::getRouteShow(), $media))
                 );
 
             Route::screen('edit', MediaEditScreen::class)
                 ->name('edit')
-                ->breadcrumbs(static fn(Trail $trail, Media $media) : Trail => $trail
-                    ->parent(MediaService::ROUTE_SHOW, $media)
-                    ->push(__('Edit'), route(MediaService::ROUTE_EDIT, $media))
+                ->breadcrumbs(static fn (Trail $trail, Media $media): Trail => $trail
+                    ->parent(MediaService::getRouteShow(), $media)
+                    ->push(__('Edit'), route(MediaService::getRouteEdit(), $media))
                 );
         });
     });

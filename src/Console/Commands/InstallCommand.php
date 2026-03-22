@@ -14,19 +14,19 @@ class InstallCommand extends Command
 
     protected $description = 'Install Laravel Orchid Media Library Wrapper';
 
-    public function handle() : int
+    public function handle(): int
     {
         $this->callVendorPublish(FoundationServiceProvider::class, [
             'orchid-media-library-stubs',
         ]);
 
-        if($this->confirm('You need to publish the migration to create the media table?', true)) {
+        if ($this->confirm('You need to publish the migration to create the media table?', true)) {
             $this->callVendorPublish(MediaLibraryServiceProvider::class, [
                 'migrations',
             ]);
         }
 
-        if($this->confirm('Publishing the config file?', true)) {
+        if ($this->confirm('Publishing the config file?', true)) {
             $this->callVendorPublish(MediaLibraryServiceProvider::class, [
                 'config',
             ]);
@@ -34,15 +34,15 @@ class InstallCommand extends Command
 
         $this->components->info('Package installed!');
 
-        return 1;
+        return Command::SUCCESS;
     }
 
-    private function callVendorPublish(string $provider, array $tags) : void
+    private function callVendorPublish(string $provider, array $tags): void
     {
         $this->call('vendor:publish', [
             '--provider' => $provider,
-            '--tag'      => $tags,
-            '--force'    => true,
+            '--tag' => $tags,
+            '--force' => true,
         ]);
     }
 }

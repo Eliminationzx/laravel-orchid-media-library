@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace OrchidMediaLibrary\Orchid\Screen\Actions\Link;
 
-use OrchidMediaLibrary\Services\MediaService;
 use Orchid\Screen\Actions\Link;
+use OrchidMediaLibrary\Services\MediaService;
 
 class MediaLink
 {
-    public static function make() : Link
+    public static function make(): Link
     {
         return Link::make(MediaService::NAME)
             ->icon(MediaService::ICON)

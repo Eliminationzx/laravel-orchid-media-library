@@ -7,37 +7,78 @@ namespace OrchidMediaLibrary\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use OrchidMediaLibrary\Console\Commands\InstallCommand;
+use OrchidMediaLibrary\Services\ConversionService;
+use OrchidMediaLibrary\Services\MediaService;
 
+/**
+ * Foundation service provider for Laravel Orchid Media Library.
+ *
+ * Registers package services and publishes stubs.
+ */
 class FoundationServiceProvider extends ServiceProvider
 {
-    public function register() : void
+    /**
+     * Register package services.
+     */
+    public function register(): void
     {
         $this->commands([
             InstallCommand::class,
         ]);
+
+        // Register services as singletons
+        $this->app->singleton(MediaService::class);
+        $this->app->singleton(ConversionService::class);
+
+        // Allow customization via service provider booted callback
+        $this->app->booted(function () {
+            if ($this->app->bound('orchid-media-library.customize')) {
+                $customizer = $this->app->make('orchid-media-library.customize');
+                if (is_callable($customizer)) {
+                    $customizer();
+                }
+            }
+        });
     }
 
-    public function boot() : void
+    /**
+     * Bootstrap package services.
+     */
+    public function boot(): void
     {
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'orchid-laravel-media-library');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'orchid-laravel-media-library');
 
+        // Publish stubs (no configuration file)
         $this->publishes([
             $this->path('stubs/routes') => base_path('routes/platform'),
-            $this->path('stubs/app')    => app_path(),
-            $this->path('stubs/images') => public_path('images'),
-        ], 'orchid-media-library-stubs');
-
-        $this->publishes([
-            $this->path('stubs/routes') => base_path('routes/platform'),
-        ], 'routes-stubs');
-
-        $this->publishes([
             $this->path('stubs/app') => app_path(),
-        ], 'screens-stubs');
+            $this->path('stubs/images') => public_path('images'),
+        ], 'orchid-media-library');
+
+        // Load package routes
+        $this->loadRoutes();
     }
 
-    private function path(string $path) : string
+    /**
+     * Load package routes.
+     */
+    private function loadRoutes(): void
     {
-        return __DIR__ . '/../..' . Str::start($path, '/');
+        // Load routes from package if they exist
+        $routesPath = __DIR__.'/../../routes/media.php';
+        if (file_exists($routesPath)) {
+            $this->loadRoutesFrom($routesPath);
+        }
+    }
+
+    /**
+     * Get absolute path to package resource.
+     *
+     * @param  string  $path  Relative path within package
+     * @return string Absolute path
+     */
+    private function path(string $path): string
+    {
+        return __DIR__.'/../..'.Str::start($path, '/');
     }
 }
