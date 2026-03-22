@@ -14,7 +14,7 @@
   "require": {
     "php": "^8.3",
     "ext-json": "*",
-    "eliminationzx/laravel-orchid-helpers": "dev-main",
+    "eliminationzx/laravel-orchid-helpers": "v1.0.0",
     "spatie/laravel-medialibrary": "^11.0"
   },
   "require-dev": {
