@@ -5,13 +5,13 @@
 [![PHP Version](https://img.shields.io/packagist/php-v/eliminationzx/laravel-orchid-media-library.svg?style=flat-square)](https://packagist.org/packages/eliminationzx/laravel-orchid-media-library)
 [![License](https://img.shields.io/packagist/l/eliminationzx/laravel-orchid-media-library.svg?style=flat-square)](LICENSE.md)
 
-A comprehensive media management package for Laravel Orchid Platform that seamlessly integrates Spatie's Laravel Media Library with Orchid's admin interface. This package provides a complete media management solution with configuration-driven customization, comprehensive testing, and modern PHP 8.2+ features.
+A comprehensive media management package for Laravel Orchid Platform that seamlessly integrates Spatie's Laravel Media Library with Orchid's admin interface. This package provides a complete media management solution with configuration-driven customization, comprehensive testing, and modern PHP 8.3+ features.
 
 ## ✨ Features
 
 - **Complete Media Management**: Upload, organize, and manage media files through Orchid's admin interface
 - **Configuration-Driven**: Extensive configuration system for customizing every aspect of the media library
-- **Modern PHP Support**: Built with PHP 8.2+ features including strict typing and modern patterns
+- **Modern PHP Support**: Built with PHP 8.3+ features including strict typing and modern patterns
 - **Comprehensive Testing**: Full test suite with PHPUnit and PHPStan integration
 - **Image Conversions**: Built-in image conversion system with configurable presets
 - **Responsive Components**: Blade components for displaying media in your applications
@@ -20,7 +20,7 @@ A comprehensive media management package for Laravel Orchid Platform that seamle
 
 ## 📋 Requirements
 
-- PHP 8.2 or higher
+- PHP 8.3 or higher
 - Laravel 10.x or 11.x
 - Orchid Platform 14.x
 - Spatie Laravel Media Library 11.x

@@ -20,17 +20,17 @@
     }
   ],
   "require": {
-    "php": "^8.2",
+    "php": "^8.3",
     "ext-json": "*",
     "laravel/framework": "^12.0",
     "orchid/platform": "^14.0",
-    "eliminationzx/laravel-orchid-helpers": "1.0.4",
+    "eliminationzx/laravel-orchid-helpers": "3.0.2",
     "spatie/laravel-medialibrary": "^11.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
-    "orchestra/testbench": "^10.0",
-    "phpunit/phpunit": "^11.0",
+    "orchestra/testbench": "^11.0",
+    "phpunit/phpunit": "^12.0",
     "phpstan/phpstan": "^1.10",
     "laravel/pint": "^1.13"
   },
